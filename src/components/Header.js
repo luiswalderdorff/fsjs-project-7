@@ -20,7 +20,7 @@ class Header extends Component {
   render() {
     return (
       <div className="container">
-        <form className="search-form" onSubmit={this.handleSubmit}>
+        <form className="search-form" onSubmit={this.handleSubmit.bind(this)}>
           <input type="search" name="search" placeholder="Search" required onChange={this.onSearchChange} ref={(input) => this.query = input}/>
           <button type="submit" className="search-button">
             <svg fill="#fff" height="24" viewBox="0 0 23 23" width="24" xmlns="http://www.w3.org/2000/svg">
