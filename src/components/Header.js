@@ -14,8 +14,9 @@ class Header extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.onSearch(this.query.value); //value from input field
-    this.props.history.push(`/${this.query.value}`);
+    let query = this.query.value;
+    this.props.onSearch(query); //value from input field
+    this.props.history.push(`/search/${query}`);
     e.currentTarget.reset();
   }
 

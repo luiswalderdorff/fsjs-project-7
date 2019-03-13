@@ -82,7 +82,7 @@ class App extends Component {
             <Route path="/cats" render={ () => <Gallery pictures={this.state.catPictures} />} />
             <Route path="/dogs" render={ () => <Gallery pictures={this.state.dogPictures} />} />
             <Route path="/owls" render={ () => <Gallery pictures={this.state.owlPictures} />} />
-            <Route path={`/${this.state.query}`} render={ () => <Gallery pictures={this.state.pictures} />} />
+            <Route path={`/search/:query}`} render={ () => <Gallery pictures={this.state.pictures} />} />
             <Route component={NotFound} />
             </Switch>
         </div>
