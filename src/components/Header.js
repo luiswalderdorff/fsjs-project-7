@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Nav from "./Nav";
+import { Link } from "react-router-dom";
 
 class Header extends Component {
 
@@ -13,7 +14,7 @@ class Header extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.onSearch(this.query.value);
+    this.props.onSearch(this.query.value); //value from input field
     e.currentTarget.reset();
   }
 
@@ -21,6 +22,7 @@ class Header extends Component {
     return (
       <div className="container">
         <form className="search-form" onSubmit={this.handleSubmit.bind(this)}>
+        <Link to={`/${this.state.searchText}`}>
           <input type="search" name="search" placeholder="Search" required onChange={this.onSearchChange} ref={(input) => this.query = input}/>
           <button type="submit" className="search-button">
             <svg fill="#fff" height="24" viewBox="0 0 23 23" width="24" xmlns="http://www.w3.org/2000/svg">
@@ -28,6 +30,7 @@ class Header extends Component {
               <path d="M0 0h24v24H0z" fill="none"/>
             </svg>
           </button>
+        </Link>
         </form>
         <Nav />
       </div>

@@ -6,7 +6,7 @@ const Gallery = props =>  { //no this for functional components
 
 	const results = props.pictures;
 	let pictures;
-
+// takes pictures array and creates a GalleryItem for each picture in the array
 	if(results.length > 0) {
 		pictures = results.map(result => <GalleryItem url={`https://farm${result.farm}.staticflickr.com/${result.server}/${result.id}_${result.secret}.jpg`} key={result.id} /> ) 
   } else {
