@@ -2,7 +2,7 @@ import React from 'react';
 import GalleryItem from "./GalleryItem";
 import NotFound from "./NotFound";
 
-const Gallery = props =>  { //no this for functional components
+const Gallery = (props, {match}) =>  { //no this for functional components
 
 	const results = props.pictures;
 	let pictures;
