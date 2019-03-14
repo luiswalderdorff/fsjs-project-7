@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import '../index.css';
 import Header from "./Header";
 import Gallery from "./Gallery";
-import NotFound from "./NotFound";
 import NoURL from "./NoURL";
 import apiKey from "../config.js";
 
@@ -88,7 +87,7 @@ class App extends Component {
             {
               (this.state.loading)
               ? <p>Loading...</p>
-              : <Route exact path="/:query" render={ () => <Gallery pictures={this.state.pictures} />} />
+              : <Route exact path="/:query" render={ () => <Gallery pictures={this.state.pictures} />} /> /*fires when the url is localhost:3000/text/moretext*/
             }
 {            <Route component={NoURL} />
 }          </Switch>
