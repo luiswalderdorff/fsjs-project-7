@@ -4,6 +4,7 @@ import '../index.css';
 import Header from "./Header";
 import Gallery from "./Gallery";
 import NotFound from "./NotFound";
+import NoURL from "./NoURL";
 import apiKey from "../config.js";
 
 class App extends Component {
@@ -29,16 +30,18 @@ class App extends Component {
 
 //gets api and saves it to state
   performSearch = (query = "cats") => {
+    this.setState({ loading: true})
     fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`) //replace tags with variable for whatever is selected
       .then(response => response.json())
       .then(response => {
-        this.setState({ pictures: response.photos.photo, query: query})
+        this.setState({ pictures: response.photos.photo, query: query, loading: false})
       })
       .catch(error => {
           console.log('Error fetching and parsing data', error);
       });
   }
 
+  // presearches for the Cats, Owls, and Dogs NavLink
   catSearch = () => {
     fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=cats&per_page=24&format=json&nojsoncallback=1`) 
       .then(response => response.json())
@@ -82,9 +85,13 @@ class App extends Component {
             <Route path="/cats" render={ () => <Gallery pictures={this.state.catPictures} />} />
             <Route path="/dogs" render={ () => <Gallery pictures={this.state.dogPictures} />} />
             <Route path="/owls" render={ () => <Gallery pictures={this.state.owlPictures} />} />
-            <Route path={`/search/:query}`} render={ () => <Gallery pictures={this.state.pictures} />} />
-            <Route component={NotFound} />
-            </Switch>
+            {
+              (this.state.loading)
+              ? <p>Loading...</p>
+              : <Route exact path="/:query" render={ () => <Gallery pictures={this.state.pictures} />} />
+            }
+{            <Route component={NoURL} />
+}          </Switch>
         </div>
       </BrowserRouter>
     );

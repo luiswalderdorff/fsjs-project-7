@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Nav from "./Nav";
 import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom"; //?
 
 class Header extends Component {
 
@@ -16,7 +17,7 @@ class Header extends Component {
     e.preventDefault();
     let query = this.query.value;
     this.props.onSearch(query); //value from input field
-    this.props.history.push(`/search/${query}`);
+    this.props.history.push(`/${query}`);
     e.currentTarget.reset();
   }
 
@@ -38,4 +39,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default withRouter(Header); //?
